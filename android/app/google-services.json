@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "458396603404",
+    "project_id": "time-attendance-app-flutter-db",
+    "storage_bucket": "time-attendance-app-flutter-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:458396603404:android:79910b942e434235d44a29",
+        "android_client_info": {
+          "package_name": "com.example.time_attendance_app_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "458396603404-cl64it81h2n7p8gg1u39io0jt2caimo2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6QIm6yFZ8HkMkxXebcX6v6Et8I9jXl5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "458396603404-cl64it81h2n7p8gg1u39io0jt2caimo2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
