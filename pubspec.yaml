@@ -37,6 +37,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.5
   firebase_core: ^2.4.1
+  intl: ^0.18.0
+  firebase_auth: ^4.2.2
+  google_sign_in: ^5.4.4
+  cloud_firestore: ^4.3.1
   # percentage_bar:
   #   git:
   #     https://github.com/sherazahmad720/Percentage-Graph.git

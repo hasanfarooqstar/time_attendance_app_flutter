@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:time_attendance_app_flutter/views/dashboard_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:time_attendance_app_flutter/views/sign_in.dart';
+import 'package:time_attendance_app_flutter/views/username_screen.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -9,11 +12,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -21,7 +24,11 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: '',
       theme: ThemeData(useMaterial3: true, primarySwatch: Colors.teal, brightness: Brightness.dark),
-      home: const DashboardScreen(),
+      home: FirebaseAuth.instance.currentUser != null
+          ? (FirebaseAuth.instance.currentUser?.displayName ?? "") == ""
+              ? UserNameScreen()
+              : DashboardScreen()
+          : SignInScreen(),
     );
   }
 }

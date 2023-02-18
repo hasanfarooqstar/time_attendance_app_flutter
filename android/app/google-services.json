@@ -7,14 +7,22 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:458396603404:android:79910b942e434235d44a29",
+        "mobilesdk_app_id": "1:458396603404:android:b89ec4d18b33c1c1d44a29",
         "android_client_info": {
-          "package_name": "com.example.time_attendance_app_flutter"
+          "package_name": "com.hassan.att"
         }
       },
       "oauth_client": [
         {
-          "client_id": "458396603404-cl64it81h2n7p8gg1u39io0jt2caimo2.apps.googleusercontent.com",
+          "client_id": "458396603404-tqs8c2ok0lahb8jf4kume69kt5c0ku1l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hassan.att",
+            "certificate_hash": "d2f2150923e8741e13bcfbb9d622b3fca849a78f"
+          }
+        },
+        {
+          "client_id": "458396603404-sjb7duvjia2hij74rtj4e46dc6cupdth.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -29,6 +37,57 @@
             {
               "client_id": "458396603404-cl64it81h2n7p8gg1u39io0jt2caimo2.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "458396603404-uv0lr25f1t0pccp6sqcr9iaqea862fed.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.timeAttendanceAppFlutter"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:458396603404:android:6f4da2382760ce3ed44a29",
+        "android_client_info": {
+          "package_name": "com.hassan.att"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "458396603404-oot2ccmj73ovp5uppk8ccb5lit4auq3n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hassan.att",
+            "certificate_hash": "d2f2150923e8741e13bcfbb9d622b3fca849a78f"
+          }
+        },
+        {
+          "client_id": "458396603404-sjb7duvjia2hij74rtj4e46dc6cupdth.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6QIm6yFZ8HkMkxXebcX6v6Et8I9jXl5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "458396603404-cl64it81h2n7p8gg1u39io0jt2caimo2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "458396603404-uv0lr25f1t0pccp6sqcr9iaqea862fed.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.timeAttendanceAppFlutter"
+              }
             }
           ]
         }

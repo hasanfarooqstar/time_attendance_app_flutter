@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:time_attendance_app_flutter/controllers/auth_controller.dart';
+import 'package:time_attendance_app_flutter/views/add_time.dart';
 
 class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
-
+  DashboardScreen({super.key});
+  final AuthController authController = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
+    var userName = authController.getUserName();
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
-        title: Text("Hassan's Dashboard", style: TextStyle(fontSize: 18)),
+        title: Text("${userName}'s Dashboard", style: TextStyle(fontSize: 18)),
+        actions: [
+          IconButton(
+              onPressed: () {
+                authController.logOut();
+              },
+              icon: Icon(Icons.logout_outlined))
+        ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.to(() => AddTime());
+        },
         child: Icon(Icons.add),
       ),
       body: Padding(
@@ -224,10 +236,10 @@ class DashboardScreen extends StatelessWidget {
                               ElevatedButton(
                                 onPressed: () {},
                                 child: Text(
-                                  "End Shif",
+                                  "End Shift",
                                   style: TextStyle(color: Colors.white),
                                 ),
-                                style: ElevatedButton.styleFrom(backgroundColor: Colors.yellowAccent),
+                                style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
                               ),
                             ],
                           ),
