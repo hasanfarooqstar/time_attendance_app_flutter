@@ -7,6 +7,18 @@ extension CustomDateFormat on DateTime {
   }
 }
 
+extension CustomDateFormatForInt on int {
+  String toDateString() {
+    DateTime date = DateTime.fromMillisecondsSinceEpoch(this);
+    return DateFormat('dd MMM, yyyy').format(date);
+  }
+
+  String toTimeString() {
+    DateTime date = DateTime.fromMillisecondsSinceEpoch(this);
+    return DateFormat('hh:mm a').format(date);
+  }
+}
+
 // extension CustomTimeFormat on TimeOfDay {
 //   String customParse() {
 //     return "${this.hourOfPeriod} : ${this.minute} ${this.}";

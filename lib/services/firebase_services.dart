@@ -18,15 +18,16 @@ class FirebaseServices {
     });
   }
 
-  void addTime(DateTime startTime, DateTime endTime, String userId) {
-    users.doc(userId).collection("attandance").add({
-      " startTime": startTime.millisecondsSinceEpoch,
+  Future<void> addTime(DateTime startTime, DateTime endTime, String userId, double rate) async {
+    await users.doc(userId).collection("attendance").add({
+      "startTime": startTime.millisecondsSinceEpoch,
       "endTime": endTime.millisecondsSinceEpoch,
       "date": DateFormat("yyyy-MM-dd").format(startTime),
+      "hourlyRate": rate,
     });
     void updateTime(DocumentReference docRef, DateTime startTime, DateTime endTime) {
       docRef.update({
-        " startTime": startTime.millisecondsSinceEpoch,
+        "startTime": startTime.millisecondsSinceEpoch,
         "endTime": endTime.millisecondsSinceEpoch,
         "date": DateFormat("yyyy-MM-dd").format(startTime),
       });
@@ -37,10 +38,10 @@ class FirebaseServices {
     List<TimeModel> timeModel = [];
     QuerySnapshot qSnapShot = await users
         .doc(uid)
-        .collection("attandance")
+        .collection("attendance")
         .where("startTime", isGreaterThan: startTime)
         .where("startTime", isLessThan: endTime)
-        .orderBy("startTime")
+        .orderBy("startTime", descending: true)
         .get();
     qSnapShot.docs.forEach((element) {
       timeModel.add(TimeModel.fromDoc(element.data() as Map<String, dynamic>));

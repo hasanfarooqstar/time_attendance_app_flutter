@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
@@ -14,8 +15,10 @@ class AddTime extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       attendanceController.resetData();
+      attendanceController.rateTextController.text = "0";
     });
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: false,
         title: Text("Add Shift Time"),
@@ -88,6 +91,46 @@ class AddTime extends StatelessWidget {
                                   ? "Select Time"
                                   : controller.selectedEndTime.to12hours()))
                         ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Hourly Rate: ",
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 50,
+                        child: TextField(
+                          controller: controller.rateTextController,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: <TextInputFormatter>[
+                            FilteringTextInputFormatter(RegExp(r'[0-9]'), allow: true)
+                          ],
+                          decoration: InputDecoration(
+                            // isCollapsed: true,
+                            // isDense: true,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: BorderSide(color: Colors.grey),
+                            ),
+                            filled: true,
+                            fillColor: Color.fromARGB(255, 55, 55, 55),
+                            hintText: 'Rate...',
+                          ),
+                        ),
                       ),
                     ],
                   ),

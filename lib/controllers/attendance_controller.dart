@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:time_attendance_app_flutter/controllers/dashboard_controller.dart';
+import 'package:time_attendance_app_flutter/models/time_model.dart';
 import 'package:time_attendance_app_flutter/services/firebase_services.dart';
 import 'package:time_attendance_app_flutter/utils/date_picker_helper.dart';
 
@@ -14,12 +16,37 @@ class AttendanceController extends GetxController {
   TimeOfDay selectedStartTime = TimeOfDay.now();
   DateTime selectedEndDate = DateTime.now();
   TimeOfDay selectedEndTime = TimeOfDay.now();
+  TextEditingController rateTextController = TextEditingController();
 
-  saveAttendance() {
-    _firebaseServices.addTime(combineDateAndTime(selectedStartDate, selectedStartTime),
-        combineDateAndTime(selectedEndDate, selectedEndTime), _auth.currentUser?.uid ?? '-');
+  // int hourlyRate = 0;
+  int previousHourlyRate = 0;
+
+  saveAttendance() async {
     Get.back();
+    await _firebaseServices.addTime(
+        combineDateAndTime(selectedStartDate, selectedStartTime),
+        combineDateAndTime(selectedEndDate, selectedEndTime),
+        _auth.currentUser?.uid ?? '-',
+        double.tryParse(rateTextController.text) ?? 0);
     Get.snackbar("success", "Your data saved successfully");
+    Get.find<DashboardController>().getData();
+  }
+
+  Future<void> _getTodayTotalTime() async {
+    var todayTime = 0;
+    DateTime now = DateTime.now();
+    DateTime startTime = DateTime(now.year, now.month, now.day);
+    DateTime nextDayTime = now.add(Duration(days: 1));
+
+    DateTime endTime = DateTime(nextDayTime.year, nextDayTime.month, nextDayTime.day);
+
+    List<TimeModel> totalTimeList = await FirebaseServices().getSpecificData(startTime.millisecondsSinceEpoch,
+        endTime.millisecondsSinceEpoch, FirebaseAuth.instance.currentUser?.uid ?? "-");
+    totalTimeList.forEach((element) {
+      int _slotTime = element.endTime - element.startTime;
+      todayTime += _slotTime;
+    });
+    print(todayTime);
   }
 
   DateTime combineDateAndTime(DateTime dateTime, TimeOfDay timeOfDay) {
